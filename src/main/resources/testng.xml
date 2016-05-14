@@ -2,9 +2,7 @@
 <suite name="Suite1">
     <test name="Executor Test">
         <classes>
-            <class name="task180416.AddIntMinusTest"/>
-            <class name="task180416.ParseTest"/>
-            <class name="task180416.AddIntPlusTest"/>
+            <class name="calculator.ParserMatchTest"/>
         </classes>
     </test>
 </suite> 

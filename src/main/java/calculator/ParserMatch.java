@@ -1,23 +1,39 @@
 package calculator;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Pavel on 14.05.2016.
  */
 public class ParserMatch {
-    private HashMap<String, Double> variables;
+    private Map<String, Double> variables;
+    private Map<String, ScientificCalculator> variablesScientificCalculator;
+
 
     public ParserMatch() {
-
         variables = new HashMap<String, Double>();
+        variablesScientificCalculator = new HashMap<String, ScientificCalculator>();
+    }
+
+    public ParserMatch(Map<String, ScientificCalculator> variablesScientificCalculator) {
+        variables = new HashMap<String, Double>();
+        this.variablesScientificCalculator = variablesScientificCalculator;
     }
 
 
-      public void setVariable(String variableName, Double variableValue) {
-         variables.put(variableName, variableValue);
-     }
+    public Map<String, ScientificCalculator> getVariablesScientificCalculator() {
+        return variablesScientificCalculator;
+    }
 
+    public void setVariablesScientificCalculator(Map<String, ScientificCalculator> variablesScientificCalculator) {
+        this.variablesScientificCalculator = variablesScientificCalculator;
+    }
+
+
+    public void setVariable(String variableName, Double variableValue) {
+        variables.put(variableName, variableValue);
+    }
 
     public Double getVariable(String variableName) {
         if (!variables.containsKey(variableName)) {
@@ -25,11 +41,11 @@ public class ParserMatch {
             return 0.0;
         }
         return variables.get(variableName);
-   }
+    }
 
 
     public double Parse(String b) throws Exception {
-        String s = b.replaceAll(" ","");
+        String s = b.replaceAll(" ", "");
         Result result = PlusMinus(s);
         if (!result.rest.isEmpty()) {
             System.err.println("Error: can't full parse");
@@ -88,6 +104,7 @@ public class ParserMatch {
             } else { // иначе - это переменная
                 return new Result(getVariable(f), s.substring(f.length()));
             }
+
         }
         return Num(s);
     }
@@ -146,9 +163,10 @@ public class ParserMatch {
 
     // Тут определяем все нашие функции, которыми мы можем пользоватся в формулах
     private Result processFunction(String func, Result r) {
-        if (func.equals("sin")) {
-            return new Result(Math.sin(Math.toRadians(r.acc)), r.rest);
-        } else if (func.equals("cos")) {
+
+        if (variablesScientificCalculator.containsKey(func)){
+            return new Result(variablesScientificCalculator.get(func).ScientificCalculator(r.acc), r.rest);
+        }  else if (func.equals("cos")) {
             return new Result(Math.cos(Math.toRadians(r.acc)), r.rest);
         } else if (func.equals("tan")) {
             return new Result(Math.tan(Math.toRadians(r.acc)), r.rest);
