@@ -2,12 +2,9 @@ package calculator;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sun.font.Script;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.testng.Assert.*;
 
 
 public class ParserMatchTest {
@@ -38,7 +35,7 @@ public class ParserMatchTest {
     @Test
     public void testParseScientificCalculator() throws Exception {
 
-        ScientificCalculator sinus = new Sinus();
+        ScientificCalculator sinus = new SInus();
         Map<String,ScientificCalculator> variablesCalculator = new HashMap<String, ScientificCalculator>();
         variablesCalculator.put("sin", sinus);
         parserMatch.setVariablesScientificCalculator(variablesCalculator);
