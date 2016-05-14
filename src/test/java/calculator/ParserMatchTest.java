@@ -35,7 +35,7 @@ public class ParserMatchTest {
     @Test
     public void testParseScientificCalculator() throws Exception {
 
-        ScientificCalculator sinus = new SInus();
+        ScientificCalculator sinus = new Sinus();
         Map<String,ScientificCalculator> variablesCalculator = new HashMap<String, ScientificCalculator>();
         variablesCalculator.put("sin", sinus);
         parserMatch.setVariablesScientificCalculator(variablesCalculator);
