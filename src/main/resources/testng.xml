@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite1">
+    <test name="Executor Test">
+        <classes>
+            <class name="task180416.AddIntMinusTest"/>
+            <class name="task180416.ParseTest"/>
+            <class name="task180416.AddIntPlusTest"/>
+        </classes>
+    </test>
+</suite> 
